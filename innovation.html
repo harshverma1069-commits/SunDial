@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovation | Sundial Technology</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .tech-hero { padding: 12rem 0 6rem; background: linear-gradient(to bottom, #000, var(--bg-secondary)); text-align: center; }
+        .tech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; margin-top: 5rem; }
+        .tech-card { padding: 3rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 10px; transition: 0.3s; }
+        .tech-card:hover { border-color: var(--accent-color); transform: translateY(-10px); }
+        .tech-card i { font-size: 3rem; color: var(--accent-color); margin-bottom: 2rem; }
+        .tech-card h3 { margin-bottom: 1rem; font-size: 1.5rem; }
+        .tech-card p { color: var(--text-secondary); font-size: 0.9rem; }
+        
+        .blueprint-section { padding: 10rem 0; display: flex; align-items: center; gap: 5rem; }
+        .blueprint-img { flex: 1; border: 1px dashed var(--accent-color); height: 400px; display: flex; align-items: center; justify-content: center; position: relative; }
+        .blueprint-img svg { width: 80%; height: 80%; stroke: var(--accent-color); fill: none; opacity: 0.5; }
+        .blueprint-text { flex: 1; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Sun<span>dial</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="innovation.html" class="active">Innovation</a></li>
+                <li><a href="collection.html">Collection</a></li>
+                <li><a href="about.html">Our Story</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="btn-icon"><i class="fa-solid fa-moon"></i></button>
+                <a href="checkout.html" class="btn-icon"><i class="fa-solid fa-bag-shopping"></i><span class="cart-count">0</span></a>
+                <a href="login.html" class="btn-icon" title="Login"><i class="fa-solid fa-user"></i></a>
+                <a href="signup.html" class="btn-icon" title="Sign Up"><i class="fa-solid fa-user-plus"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="tech-hero" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),url(https://images.unsplash.com/photo-1585123334904-845d60e97b29?auto=format&fit=crop&q=80&w=1200) ; background-size: cover; background-position: center;">
+        <div class="container">
+            <span style="color: var(--accent-color); letter-spacing: 5px; text-transform: uppercase;">Engineering Tomorrow</span>
+            <h1 style="font-size: 4rem; margin: 1rem 0;">Pioneering Tech</h1>
+            <p style="color: var(--text-secondary); max-width: 700px; margin: 0 auto;">At Sundial, innovation is not a department—it's our DNA. We push the boundaries of physics and materials science to redefine what a timepiece can do.</p>
+            
+            <div class="tech-grid">
+                <div class="tech-card reveal">
+                    <i class="fa-solid fa-sun"></i>
+                    <h3>Solar-Kinetic Drive</h3>
+                    <p>A revolutionary movement that converts both ambient light and kinetic energy into stored power. With a 365-day power reserve, a Sundial never sleeps.</p>
+                </div>
+                <div class="tech-card reveal" style="transition-delay: 0.2s;">
+                    <i class="fa-solid fa-link"></i>
+                    <h3>Quantum Link</h3>
+                    <p>Utilizing low-earth orbit satellite constellations, our watches synchronize with atomic clocks daily, maintaining accuracy to within one second every 30,000 years.</p>
+                </div>
+                <div class="tech-card reveal" style="transition-delay: 0.4s;">
+                    <i class="fa-solid fa-shield-virus"></i>
+                    <h3>Diamond Shield</h3>
+                    <p>A proprietary Plasma Enhanced Chemical Vapor Deposition (PECVD) process applies a 5-micron layer of synthetic diamond to every case, making it virtually scratch-proof.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="container blueprint-section">
+        <div class="blueprint-img reveal" style="background-image: url(https://www.bing.com/th/id/OIP.zQlff-hmX9FjYCLBI9fGpgHaE5?w=193&h=135&c=8&rs=1&qlt=90&o=6&dpr=2&pid=3.1&rm=2); background-size: cover; border: none;">
+        </div>
+        <div class="blueprint-text reveal">
+            <h2 class="section-title" style="font-size: 2.5rem; margin-bottom: 1.5rem;">The Architecture of <br><span style="color: var(--accent-color);">Precision</span></h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.8;">Our proprietary 'Vortex' movement features over 420 individual components, each hand-finished to tolerances of less than 0.001mm. This is not just assembly; it's a microscopic ballet. The balance wheel oscillates at a high frequency of 36,000 vibrations per hour, providing a sweeping second hand motion that is as smooth as time itself.</p>
+            <p style="color: var(--text-secondary); line-height: 1.8;">This level of complexity allows for multiple high-complications including a perpetual calendar that requires no adjustment until the year 2100, a precision moon phase accurate to one day in 122 years, and a dual-timezone display that adjusts automatically via the Quantum Link system.</p>
+        </div>
+    </section>
+
+    <section style="padding: 10rem 0; background: var(--bg-secondary);">
+        <div class="container">
+            <div class="story-grid">
+                <div class="story-text reveal">
+                    <h2 class="section-title" style="font-size: 2.5rem; margin-bottom: 1.5rem;">Material <br><span style="color: var(--accent-color);">Alchemy</span></h2>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.8;">We source only the most resilient materials from across the globe and beyond. Our 'Star-Dust' dials are crafted from slices of the Muonionalusta meteorite, while our cases use Grade 5 Titanium—the same alloy found in deep-space exploration vessels.</p>
+                    <p style="color: var(--text-secondary); line-height: 1.8;">Every crystal is cut from laboratory-grown sapphire, reaching a Mohs hardness of 9, ensuring that your view of time remains crystal clear for generations.</p>
+                </div>
+                <div class="story-img reveal" style="background-image: url('https://www.bing.com/th/id/OIP.zQlff-hmX9FjYCLBI9fGpgHaE5?w=193&h=135&c=8&rs=1&qlt=90&o=6&dpr=2&pid=3.1&rm=2'); transition-delay: 0.2s;">
+                    <div style="position: absolute; bottom: 20px; right: 20px; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; z-index: 1;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="padding: 10rem 0; background: var(--bg-primary);">
+        <div class="container">
+            <h2 class="reveal" style="text-align: center; margin-bottom: 5rem;">Our Manufacturing <span style="color: var(--accent-color);">Ethos</span></h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;">
+                <div class="reveal">
+                    <h3 style="margin-bottom: 1rem; color: var(--accent-color);">01. Micro-Engineering</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Our CNC machines operate at tolerances of 0.5 microns, ensuring every gear teeth interlocks with mathematical perfection. This precision is what allows our movements to run for decades without service.</p>
+                </div>
+                <div class="reveal" style="transition-delay: 0.1s;">
+                    <h3 style="margin-bottom: 1rem; color: var(--accent-color);">02. Hand-Finishing</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Machine precision is only the start. Every bridge is hand-beveled (Anglage), and every screw is heat-blued to a specific shade of cobalt, a process that takes years to master.</p>
+                </div>
+                <div class="reveal" style="transition-delay: 0.2s;">
+                    <h3 style="margin-bottom: 1rem; color: var(--accent-color);">03. Rigorous Testing</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6;">Each Sundial undergoes a 600-hour 'Cosmos Test'—exposed to extreme temperatures, magnetic fields of 15,000 Gauss, and pressure equivalent to 1000m depth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="padding: 5rem 0; background: var(--bg-tertiary); border-top: 1px solid var(--border-color);">
+        <div class="container">
+            <div class="footer-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 4rem;">
+                <div class="footer-col">
+                    <a href="index.html" class="logo">Sun<span>dial</span></a>
+                    <p style="color: var(--text-secondary); margin-top: 1.5rem; font-size: 0.9rem; line-height: 1.6;">Crafting the intersection of luxury horology and cutting-edge technology since 2026. Every second is a masterpiece.</p>
+                </div>
+                <div class="footer-col">
+                    <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem; color: var(--accent-color);">Shop</h4>
+                    <ul style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <li><a href="collection.html" style="color: var(--text-secondary); font-size: 0.9rem;">Collection</a></li>
+                        <li><a href="bespoke.html" style="color: var(--text-secondary); font-size: 0.9rem;">Bespoke Studio</a></li>
+                        <li><a href="innovation.html" style="color: var(--text-secondary); font-size: 0.9rem;">Technology</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem; color: var(--accent-color);">Brand</h4>
+                    <ul style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <li><a href="about.html" style="color: var(--text-secondary); font-size: 0.9rem;">Our Story</a></li>
+                        <li><a href="about.html" style="color: var(--text-secondary); font-size: 0.9rem;">Sustainability</a></li>
+                        <li><a href="about.html" style="color: var(--text-secondary); font-size: 0.9rem;">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem; color: var(--accent-color);">Personalize UI</h4>
+                    <div style="display: flex; gap: 12px; margin-top: 1rem;">
+                        <button class="accent-picker" data-theme="gold" title="Gold Theme" style="width: 28px; height: 28px; border-radius: 50%; background: #d4af37; border: 2px solid transparent; cursor: pointer; transition: 0.3s;"></button>
+                        <button class="accent-picker" data-theme="blue" title="Blue Theme" style="width: 28px; height: 28px; border-radius: 50%; background: #3b82f6; border: 2px solid transparent; cursor: pointer; transition: 0.3s;"></button>
+                        <button class="accent-picker" data-theme="emerald" title="Emerald Theme" style="width: 28px; height: 28px; border-radius: 50%; background: #10b981; border: 2px solid transparent; cursor: pointer; transition: 0.3s;"></button>
+                        <button class="accent-picker" data-theme="rose" title="Rose Theme" style="width: 28px; height: 28px; border-radius: 50%; background: #f43f5e; border: 2px solid transparent; cursor: pointer; transition: 0.3s;"></button>
+                    </div>
+                    <div style="display: flex; gap: 1.5rem; margin-top: 2rem;">
+                        <a href="#" style="color: var(--text-secondary); font-size: 1.2rem;"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" style="color: var(--text-secondary); font-size: 1.2rem;"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" style="color: var(--text-secondary); font-size: 1.2rem;"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom" style="margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; color: var(--text-secondary); font-size: 0.8rem;">
+                <p>&copy; 2026 Sundial Horology Inc. All rights reserved.</p>
+                <div style="display: flex; gap: 2rem;">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>
