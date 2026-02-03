@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Studio | Design Your Sundial</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --brand-red: #f43f5e;
+            --brand-red-soft: rgba(244, 63, 94, 0.12);
+        }
+
+        .configurator {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 360px;
+            gap: 2.5rem;
+            padding: 120px 0 80px;
+            min-height: calc(100vh - 80px);
+        }
+
+        .viewer-shell {
+            position: relative;
+            border-radius: 28px;
+            overflow: hidden;
+            background: radial-gradient(circle at 30% 20%, #2d2f33 0%, #0b0b0c 55%, #050505 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            min-height: 560px;
+        }
+
+        #viewer {
+            width: 100%;
+            height: 100%;
+            touch-action: none;
+        }
+
+        .viewer-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(8, 8, 10, 0.85);
+            z-index: 3;
+        }
+
+        .viewer-overlay.hidden {
+            display: none;
+        }
+
+        .viewer-cta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            text-align: center;
+        }
+
+        .viewer-cta h3 {
+            font-family: var(--font-heading);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .viewer-cta button {
+            padding: 0.9rem 2rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: transparent;
+            color: #fff;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: 0.25s;
+        }
+
+        .viewer-cta button:hover {
+            transform: translateY(-1px);
+            border-color: var(--accent-color);
+        }
+
+        .panel {
+            background: rgba(18, 18, 20, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .panel h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .panel p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .selection-message {
+            padding: 0.85rem 1rem;
+            border-radius: 14px;
+            color: #f8e7b3;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            display: none;
+        }
+
+        .selection-message.visible {
+            display: block;
+        }
+
+        .watch-selection {
+            display: none;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 20px;
+            background: rgba(10, 10, 12, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .watch-selection.visible {
+            display: grid;
+            grid-template-columns: 120px minmax(0, 1fr);
+            align-items: center;
+        }
+
+        .watch-selection img {
+            width: 120px;
+            height: 120px;
+            border-radius: 16px;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .watch-series {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.7rem;
+            color: var(--accent-color);
+        }
+
+        .watch-details h3 {
+            margin: 0.35rem 0 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .watch-details p {
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .watch-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .watch-meta span {
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+
+        .watch-price {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .option-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .option-group h3 {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+
+        .option-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.75rem;
+        }
+
+        .option-btn {
+            border-radius: 999px;
+            padding: 0.65rem 1rem;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: transparent;
+            color: #fff;
+            transition: 0.2s;
+            min-height: 44px;
+            touch-action: manipulation;
+            position: relative;
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .option-btn.active {
+            border-color: var(--brand-red);
+            background: transparent;
+            color: #fff;
+            box-shadow: 0 0 0 1px rgba(244, 63, 94, 0.35);
+        }
+
+        .option-btn:hover {
+            border-color: var(--brand-red);
+            background: var(--brand-red-soft);
+        }
+
+        .option-btn:active {
+            transform: scale(0.98);
+            background: var(--brand-red-soft);
+        }
+
+        .option-btn:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(244, 63, 94, 0.5);
+        }
+
+
+        .config-summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        .config-summary span {
+            color: #fff;
+        }
+
+        .config-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .confirm-btn {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: transparent;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.8rem;
+            transition: 0.2s;
+            min-height: 48px;
+            touch-action: manipulation;
+        }
+
+        .confirm-btn:hover {
+            border-color: var(--accent-color);
+        }
+
+        .confirm-btn:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        .change-toast {
+            position: fixed;
+            left: 50%;
+            bottom: 2rem;
+            transform: translateX(-50%);
+            background: rgba(10, 10, 12, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 999px;
+            padding: 0.65rem 1.4rem;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #fff;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.2s;
+            z-index: 20;
+        }
+
+        .change-toast.visible {
+            opacity: 1;
+        }
+
+        .confirm-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(8, 8, 10, 0.75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.2s;
+            z-index: 30;
+        }
+
+        .confirm-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .confirm-card {
+            width: min(420px, 100%);
+            background: rgba(18, 18, 20, 0.98);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 24px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+        }
+
+        .confirm-card h3 {
+            margin: 0;
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+        }
+
+        .confirm-card p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .confirm-actions {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.75rem;
+        }
+
+        .confirm-actions button {
+            padding: 0.8rem 1rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: transparent;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-size: 0.75rem;
+        }
+
+        .confirm-actions button.primary {
+            border-color: var(--accent-color);
+        }
+
+        .site-footer {
+            padding: 5rem 0;
+            background: var(--bg-tertiary);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 4rem;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 1.5rem;
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            color: var(--accent-color);
+        }
+
+        .footer-col ul {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .footer-col p,
+        .footer-col a {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .footer-bottom {
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            .configurator {
+                grid-template-columns: 1fr;
+            }
+
+            .panel {
+                order: -1;
+            }
+
+            .viewer-shell {
+                min-height: 420px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 820px) {
+            .panel {
+                padding: 2rem 1.5rem;
+            }
+
+            .watch-selection.visible {
+                grid-template-columns: 1fr;
+                text-align: center;
+                justify-items: center;
+            }
+
+            .watch-meta {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .configurator {
+                padding: 110px 0 60px;
+            }
+
+            .viewer-shell {
+                min-height: 320px;
+            }
+
+            .option-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .config-summary {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .confirm-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Sun<span>dial</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="innovation.html">Innovation</a></li>
+                <li><a href="collection.html">Collection</a></li>
+                <li><a href="about.html">Our Story</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="btn-icon"><i class="fa-solid fa-moon"></i></button>
+                <a href="checkout.html" class="btn-icon"><i class="fa-solid fa-bag-shopping"></i><span class="cart-count">0</span></a>
+                <a href="login.html" class="btn-icon" title="Login"><i class="fa-solid fa-user"></i></a>
+                <a href="signup.html" class="btn-icon" title="Sign Up"><i class="fa-solid fa-user-plus"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container configurator">
+        <section>
+            <div class="viewer-shell" id="viewer-shell">
+                <div id="viewer"></div>
+                <div class="viewer-overlay" id="viewer-overlay">
+                    <div class="viewer-cta">
+                        <h3>Interactive 3D Configurator</h3>
+                        <button type="button" id="viewer-start">Launch 3D View</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <aside class="panel">
+            <div>
+                <h2>Custom Studio</h2>
+                <p>Compose a timepiece in real time with precision materials and finishes engineered for modern luxury.</p>
+            </div>
+
+            <div id="selection-message" class="selection-message"></div>
+
+            <div id="watch-selection" class="watch-selection">
+                <img id="watch-image" src="" alt="">
+                <div class="watch-details">
+                    <span class="watch-series" id="watch-series"></span>
+                    <h3 id="watch-name"></h3>
+                    <p id="watch-description"></p>
+                    <div class="watch-meta">
+                        <span id="watch-size"></span>
+                        <span id="watch-material"></span>
+                        <span id="watch-movement"></span>
+                    </div>
+                    <div class="watch-price" id="watch-price"></div>
+                </div>
+            </div>
+
+            <div class="option-group" data-group="case">
+                <h3>Case Material</h3>
+                <div class="option-grid">
+                    <button class="option-btn active" data-value="titanium" type="button">Titanium</button>
+                    <button class="option-btn" data-value="steel" type="button">Steel</button>
+                    <button class="option-btn" data-value="gold" type="button">18K Gold</button>
+                    <button class="option-btn" data-value="pvd" type="button">Matte Black</button>
+                </div>
+            </div>
+
+            <div class="option-group" data-group="dial">
+                <h3>Dial Finish</h3>
+                <div class="option-grid">
+                    <button class="option-btn active" data-value="sunburst" type="button">Sunburst</button>
+                    <button class="option-btn" data-value="matte" type="button">Matte</button>
+                    <button class="option-btn" data-value="gloss" type="button">Gloss</button>
+                    <button class="option-btn" data-value="noir" type="button">Noir</button>
+                </div>
+            </div>
+
+            <div class="option-group" data-group="strap">
+                <h3>Strap</h3>
+                <div class="option-grid">
+                    <button class="option-btn active" data-value="leather" type="button">Leather</button>
+                    <button class="option-btn" data-value="bracelet" type="button">Metal</button>
+                    <button class="option-btn" data-value="rubber" type="button">Rubber</button>
+                    <button class="option-btn" data-value="tactical" type="button">Sport</button>
+                </div>
+            </div>
+
+            <div class="config-summary">
+                <span id="config-summary">Titanium / Sunburst / Leather</span>
+                <span>60 FPS Ready</span>
+            </div>
+
+            <div class="config-actions">
+                <button type="button" class="confirm-btn" id="confirm-customization">Final Confirmation</button>
+            </div>
+        </aside>
+    </main>
+
+    <div class="change-toast" id="change-toast">Customization updated</div>
+
+    <div class="confirm-modal" id="confirm-modal">
+        <div class="confirm-card">
+            <h3>All Changes Completed</h3>
+            <p>Confirm to add this customized watch to your cart.</p>
+            <div class="confirm-actions">
+                <button type="button" id="confirm-cancel">Back</button>
+                <button type="button" id="confirm-accept" class="primary">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="logo">Sun<span>dial</span></a>
+                    <p>Crafting the intersection of luxury horology and cutting-edge technology since 2026. Every second is a masterpiece.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="collection.html">Collection</a></li>
+                        <li><a href="bespoke.html">Bespoke Studio</a></li>
+                        <li><a href="innovation.html">Technology</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Brand</h4>
+                    <ul>
+                        <li><a href="about.html">Our Story</a></li>
+                        <li><a href="about.html">Sustainability</a></li>
+                        <li><a href="about.html">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Sundial Horology Inc. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+    <script type="module">
+        import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+        import { GLTFLoader } from 'https://unpkg.com/three@0.160.0/examples/jsm/loaders/GLTFLoader.js';
+        import { OrbitControls } from 'https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js';
+
+        const viewerShell = document.getElementById('viewer-shell');
+        const viewerOverlay = document.getElementById('viewer-overlay');
+        const viewerStart = document.getElementById('viewer-start');
+        const summaryEl = document.getElementById('config-summary');
+        const selectionMessage = document.getElementById('selection-message');
+        const watchSelection = document.getElementById('watch-selection');
+        const watchImage = document.getElementById('watch-image');
+        const watchSeries = document.getElementById('watch-series');
+        const watchName = document.getElementById('watch-name');
+        const watchDescription = document.getElementById('watch-description');
+        const watchSize = document.getElementById('watch-size');
+        const watchMaterial = document.getElementById('watch-material');
+        const watchMovement = document.getElementById('watch-movement');
+        const watchPrice = document.getElementById('watch-price');
+        const confirmButton = document.getElementById('confirm-customization');
+        const changeToast = document.getElementById('change-toast');
+        const confirmModal = document.getElementById('confirm-modal');
+        const confirmCancel = document.getElementById('confirm-cancel');
+        const confirmAccept = document.getElementById('confirm-accept');
+
+        const products = {
+            '1': {
+                name: 'Chronos One',
+                price: 1250,
+                desc: 'A minimalist masterpiece for everyday precision with a sunray dial and solar-kinetic movement.',
+                image: 'h1.jpg',
+                specs: { movement: 'Solar-Kinetic', case: '316L Steel', size: '40mm' },
+                category: 'Nova Series'
+            },
+            '2': {
+                name: 'Vortex Elite',
+                price: 3800,
+                desc: 'Engineered for the global traveler with a dual-timezone GMT complication.',
+                image: '45.jpg',
+                specs: { movement: 'Auto-GMT Cal.9', case: 'Grade 5 Titanium', size: '42mm' },
+                category: 'Master Series'
+            },
+            '3': {
+                name: 'Aeon Classic',
+                price: 2100,
+                desc: 'Timeless elegance with rose gold casing and advanced shock-mounting.',
+                image: '897.jpg',
+                specs: { movement: 'Mechanical', case: '18k Rose Gold', size: '38mm' },
+                category: 'Heritage Series'
+            },
+            '4': {
+                name: 'Sun Ray',
+                price: 950,
+                desc: 'Ultra-thin profile with high-efficiency solar collector dial.',
+                image: 'Fu.jpg',
+                specs: { movement: 'Solar Quartz', case: 'Alloy', size: '41mm' },
+                category: 'Solaris Series'
+            },
+            '5': {
+                name: 'Deep Sea X',
+                price: 4500,
+                desc: 'The ultimate diving instrument with helium escape valve and sapphire crystal back.',
+                image: 'gu.jpg',
+                specs: { movement: 'Auto-Diver', case: 'Steel', size: '44mm' },
+                category: 'Titan Series'
+            },
+            '6': {
+                name: 'Logic Pro',
+                price: 1900,
+                desc: 'Atomic timekeeping via satellite sync with a matte ceramic finish.',
+                image: 'ui.jpg',
+                specs: { movement: 'Satellite Sync', case: 'Ceramic', size: '42mm' },
+                category: 'Quantum Series'
+            }
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const selectedId = params.get('id');
+        const selectedProduct = selectedId ? products[selectedId] : null;
+        const hasSelection = Boolean(selectedProduct);
+
+        if (!hasSelection) {
+            selectionMessage.textContent = 'Please pick a watch from the Collection to customize. Redirecting now.';
+            selectionMessage.classList.add('visible');
+            confirmButton.disabled = true;
+            setTimeout(() => {
+                window.location.href = 'collection.html';
+            }, 2200);
+        } else {
+            watchSelection.classList.add('visible');
+            watchImage.src = selectedProduct.image;
+            watchImage.alt = selectedProduct.name;
+            watchSeries.textContent = selectedProduct.category;
+            watchName.textContent = selectedProduct.name;
+            watchDescription.textContent = selectedProduct.desc;
+            watchSize.textContent = selectedProduct.specs.size;
+            watchMaterial.textContent = selectedProduct.specs.case;
+            watchMovement.textContent = selectedProduct.specs.movement;
+            watchPrice.textContent = `$${selectedProduct.price.toLocaleString()}`;
+        }
+
+        const state = {
+            case: 'titanium',
+            dial: 'sunburst',
+            strap: 'leather'
+        };
+
+        let renderer;
+        let scene;
+        let camera;
+        let controls;
+        let meshMap;
+
+        const materialPresets = {
+            case: {
+                titanium: { color: 0xc0c4c8, metalness: 0.85, roughness: 0.7 },
+                steel: { color: 0xe3e3e3, metalness: 0.9, roughness: 0.2 },
+                gold: { color: 0xd4af37, metalness: 0.95, roughness: 0.18 },
+                pvd: { color: 0x0f0f10, metalness: 0.8, roughness: 0.4 }
+            },
+            dial: {
+                sunburst: { color: 0x1c1d20, metalness: 0.3, roughness: 0.25 },
+                matte: { color: 0x222225, metalness: 0.05, roughness: 0.85 },
+                gloss: { color: 0x151515, metalness: 0.15, roughness: 0.1 },
+                noir: { color: 0x050505, metalness: 0.2, roughness: 0.35 }
+            },
+            strap: {
+                leather: { color: 0x3b2a22, metalness: 0, roughness: 0.8 },
+                bracelet: { color: 0xc4c4c4, metalness: 0.9, roughness: 0.3 },
+                rubber: { color: 0x111111, metalness: 0, roughness: 0.9 },
+                tactical: { color: 0x1e2b2a, metalness: 0, roughness: 0.75 }
+            },
+            hands: { color: 0xe7e7e7, metalness: 0.95, roughness: 0.12 }
+        };
+
+        const glassPreset = {
+            color: 0xffffff,
+            metalness: 0,
+            roughness: 0.02,
+            transmission: 1,
+            thickness: 0.6,
+            transparent: true,
+            ior: 1.77,
+            clearcoat: 1,
+            clearcoatRoughness: 0.02
+        };
+
+        const setSummary = () => {
+            summaryEl.textContent = `${capitalize(state.case)} / ${capitalize(state.dial)} / ${capitalize(state.strap)}`;
+        };
+
+        const capitalize = (value) => value.charAt(0).toUpperCase() + value.slice(1);
+
+        const createStandardMaterial = (preset) => {
+            return new THREE.MeshStandardMaterial({
+                color: preset.color,
+                metalness: preset.metalness,
+                roughness: preset.roughness
+            });
+        };
+
+        const createGlassMaterial = () => {
+            return new THREE.MeshPhysicalMaterial({
+                color: glassPreset.color,
+                metalness: glassPreset.metalness,
+                roughness: glassPreset.roughness,
+                transmission: glassPreset.transmission,
+                thickness: glassPreset.thickness,
+                transparent: glassPreset.transparent,
+                ior: glassPreset.ior,
+                clearcoat: glassPreset.clearcoat,
+                clearcoatRoughness: glassPreset.clearcoatRoughness
+            });
+        };
+
+        const applyMaterials = () => {
+            if (!meshMap) return;
+
+            meshMap.case.material = createStandardMaterial(materialPresets.case[state.case]);
+            meshMap.dial.material = createStandardMaterial(materialPresets.dial[state.dial]);
+            meshMap.strap.material = createStandardMaterial(materialPresets.strap[state.strap]);
+            meshMap.hands.material = createStandardMaterial(materialPresets.hands);
+            meshMap.glass.material = createGlassMaterial();
+        };
+
+        const handleOptionClick = (event) => {
+            const button = event.target.closest('.option-btn');
+            if (!button) return;
+
+            if (!hasSelection) return;
+            const group = button.closest('.option-group');
+            if (!group) return;
+
+            const key = group.dataset.group;
+            const value = button.dataset.value;
+            if (!key || !value) return;
+
+            state[key] = value;
+            group.querySelectorAll('.option-btn').forEach((btn) => btn.classList.remove('active'));
+            button.classList.add('active');
+            setSummary();
+            applyMaterials();
+            showChangeToast();
+        };
+
+        document.querySelectorAll('.option-group').forEach((group) => {
+            group.addEventListener('click', handleOptionClick);
+        });
+
+        const findMeshByKeywords = (meshes, keywords) => {
+            return meshes.find((mesh) => {
+                const name = mesh.name.toLowerCase();
+                return keywords.some((keyword) => name.includes(keyword));
+            });
+        };
+
+        const buildMeshMap = (root) => {
+            const meshes = [];
+            root.traverse((node) => {
+                if (node.isMesh) {
+                    node.castShadow = false;
+                    node.receiveShadow = false;
+                    meshes.push(node);
+                }
+            });
+
+            const map = {
+                case: findMeshByKeywords(meshes, ['case', 'body', 'housing']) || meshes[0],
+                dial: findMeshByKeywords(meshes, ['dial', 'face']) || meshes[1] || meshes[0],
+                hands: findMeshByKeywords(meshes, ['hand']) || meshes[2] || meshes[0],
+                strap: findMeshByKeywords(meshes, ['strap', 'band', 'bracelet']) || meshes[3] || meshes[0],
+                glass: findMeshByKeywords(meshes, ['glass', 'bezel', 'crystal']) || meshes[4] || meshes[0]
+            };
+
+            return map;
+        };
+
+        const setupLights = () => {
+            const keyLight = new THREE.DirectionalLight(0xffffff, 2.4);
+            keyLight.position.set(5, 6, 4);
+
+            const fillLight = new THREE.DirectionalLight(0xffffff, 1.2);
+            fillLight.position.set(-4, 2.5, 6);
+
+            const rimLight = new THREE.DirectionalLight(0xffffff, 0.4);
+            rimLight.position.set(-6, 6, -4);
+
+            const ambient = new THREE.AmbientLight(0xffffff, 0.25);
+
+            scene.add(keyLight, fillLight, rimLight, ambient);
+        };
+
+        const frameModel = (model) => {
+            const box = new THREE.Box3().setFromObject(model);
+            const size = box.getSize(new THREE.Vector3());
+            const center = box.getCenter(new THREE.Vector3());
+
+            model.position.sub(center);
+
+            const maxDim = Math.max(size.x, size.y, size.z);
+            const cameraDistance = maxDim * 1.8;
+
+            camera.position.set(cameraDistance * 0.3, cameraDistance * 0.2, cameraDistance);
+            camera.near = maxDim / 100;
+            camera.far = maxDim * 20;
+            camera.updateProjectionMatrix();
+            controls.target.set(0, 0, 0);
+            controls.update();
+        };
+
+        const animate = () => {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        };
+
+        const handleResize = () => {
+            if (!renderer || !camera) return;
+            const { clientWidth, clientHeight } = viewerShell;
+            renderer.setSize(clientWidth, clientHeight, false);
+            camera.aspect = clientWidth / clientHeight;
+            camera.updateProjectionMatrix();
+        };
+
+        const initViewer = () => {
+            if (renderer) return;
+
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x0b0b0c);
+
+            camera = new THREE.PerspectiveCamera(40, viewerShell.clientWidth / viewerShell.clientHeight, 0.1, 100);
+            renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+            renderer.setSize(viewerShell.clientWidth, viewerShell.clientHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+            renderer.outputColorSpace = THREE.SRGBColorSpace;
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.1;
+            viewerShell.appendChild(renderer.domElement);
+
+            controls = new OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.enablePan = false;
+            controls.minDistance = 2;
+            controls.maxDistance = 8;
+
+            setupLights();
+
+            const loader = new GLTFLoader();
+            loader.load(
+                'assets/watch.glb',
+                (gltf) => {
+                    const model = gltf.scene;
+                    scene.add(model);
+                    meshMap = buildMeshMap(model);
+                    applyMaterials();
+                    frameModel(model);
+                    animate();
+                },
+                undefined,
+                () => {
+                    viewerOverlay.classList.remove('hidden');
+                }
+            );
+
+            window.addEventListener('resize', handleResize);
+        };
+
+        const startViewer = () => {
+            if (!hasSelection) {
+                selectionMessage.textContent = 'Please pick a watch from the Collection to customize. Redirecting now.';
+                selectionMessage.classList.add('visible');
+                setTimeout(() => {
+                    window.location.href = 'collection.html';
+                }, 2200);
+                return;
+            }
+            viewerOverlay.classList.add('hidden');
+            initViewer();
+        };
+
+        viewerStart.addEventListener('click', startViewer, { once: true });
+        viewerShell.addEventListener('pointerdown', startViewer, { once: true });
+
+        let toastTimer;
+        const showChangeToast = () => {
+            changeToast.classList.add('visible');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                changeToast.classList.remove('visible');
+            }, 1600);
+        };
+
+        const openConfirmModal = () => {
+            if (!hasSelection) return;
+            confirmModal.classList.add('active');
+        };
+
+        const closeConfirmModal = () => {
+            confirmModal.classList.remove('active');
+        };
+
+        const confirmCustomization = () => {
+            if (!hasSelection) return;
+            const customization = {
+                Case: capitalize(state.case),
+                Dial: capitalize(state.dial),
+                Strap: capitalize(state.strap)
+            };
+            Cart.add({
+                id: selectedId,
+                name: selectedProduct.name,
+                price: selectedProduct.price,
+                image: selectedProduct.image,
+                customization
+            });
+            closeConfirmModal();
+            changeToast.textContent = 'Added customized watch to cart';
+            showChangeToast();
+            changeToast.textContent = 'Customization updated';
+        };
+
+        confirmButton.addEventListener('click', openConfirmModal);
+        confirmCancel.addEventListener('click', closeConfirmModal);
+        confirmAccept.addEventListener('click', confirmCustomization);
+
+        setSummary();
+    </script>
+</body>
+</html>

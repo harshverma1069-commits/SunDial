@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story | Sundial Heritage</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .about-hero { padding: 15rem 0 8rem; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1495856458675-04bc645ed07e?auto=format&fit=crop&q=80&w=1920'); background-size: cover; background-position: center; }
+        .philosophy-section { padding: 10rem 0; background: var(--bg-secondary); }
+        .philosophy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+        .philosophy-img { height: 600px; border-radius: 15px; background-size: cover; background-position: center; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        
+        .timeline { position: relative; max-width: 900px; margin: 8rem auto; padding: 2rem 0; }
+        .timeline::before { content: ''; position: absolute; left: 50%; top: 0; width: 1px; height: 100%; background: var(--border-color); transform: translateX(-50%); }
+        .timeline-item { margin-bottom: 6rem; position: relative; width: 50%; padding: 0 4rem; }
+        .timeline-item:nth-child(even) { margin-left: 50%; text-align: left; }
+        .timeline-item:nth-child(odd) { text-align: right; }
+        .timeline-dot { position: absolute; top: 0; left: 100%; width: 12px; height: 12px; background: var(--accent-color); border-radius: 50%; transform: translate(-50%, 5px); z-index: 1; box-shadow: 0 0 15px var(--accent-color); }
+        .timeline-item:nth-child(even) .timeline-dot { left: 0; }
+        .timeline-date { font-family: var(--font-heading); color: var(--accent-color); font-size: 1.8rem; margin-bottom: 0.5rem; letter-spacing: 2px; }
+        .timeline-content { background: var(--bg-tertiary); padding: 2rem; border-radius: 10px; border: 1px solid var(--border-color); }
+        
+        @media (max-width: 768px) {
+            .timeline::before { left: 20px; }
+            .timeline-item { width: 100%; margin-left: 0 !important; text-align: left !important; padding: 0 0 0 50px; }
+            .timeline-dot { left: 20px !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Sun<span>dial</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="innovation.html">Innovation</a></li>
+                <li><a href="collection.html">Collection</a></li>
+                <li><a href="about.html" class="active">Our Story</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="btn-icon"><i class="fa-solid fa-moon"></i></button>
+                <a href="checkout.html" class="btn-icon"><i class="fa-solid fa-bag-shopping"></i><span class="cart-count">0</span></a>
+                <a href="login.html" class="btn-icon" title="Login"><i class="fa-solid fa-user"></i></a>
+                <a href="signup.html" class="btn-icon" title="Sign Up"><i class="fa-solid fa-user-plus"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="about-hero">
+        <div class="container">
+            <h1 style="font-size: 4rem;">The Heritage</h1>
+            <p style="color: var(--text-secondary); max-width: 600px; margin: 2rem auto;">Founded on the principle that time is our most precious commodity, Sundial exists to honor every second with uncompromising beauty.</p>
+        </div>
+    </header>
+
+    <section class="philosophy-section">
+        <div class="container">
+            <div class="philosophy-grid">
+                <div class="philosophy-text reveal">
+                    <h2 class="section-title" style="font-size: 3rem; margin-bottom: 2rem;">A Legacy of <br><span style="color: var(--accent-color)">Precision</span></h2>
+                    <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.8;">At the heart of every Sundial timepiece lies a commitment to the impossible. We don't just assemble watches; we engineer legacies. Our journey began with a simple question: Can we capture the eternal motion of the cosmos in a single, wearable instrument?</p>
+                    <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.8;">Today, that vision is realized through the work of our master horologists and aerospace engineers, who collaborate to push the boundaries of materials science and mechanical movement. From our carbon-neutral laboratory to your wrist, every step is a testament to our pursuit of perfection.</p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem;">
+                        <div>
+                            <h4 style="color: var(--accent-color); margin-bottom: 0.5rem;">Craftsmanship</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-secondary);">Over 400 hours of hand-finishing per movement.</p>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--accent-color); margin-bottom: 0.5rem;">Innovation</h4>
+                            <p style="font-size: 0.9rem; color: var(--text-secondary);">12 proprietary patents in energy harvesting.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="philosophy-img reveal" style="background-image: url('https://images.unsplash.com/photo-1585123334904-845d60e97b29?auto=format&fit=crop&q=80&w=1200');"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container" style="padding: 10rem 0;">
+        <h2 class="reveal" style="text-align: center; margin-bottom: 5rem;">Milestones of Time</h2>
+        <div class="timeline">
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2021</div>
+                <div class="timeline-content">
+                    <h3>The Spark</h3>
+                    <p style="color: var(--text-secondary);">A group of aerospace engineers and Swiss horologists meet in Zurich with a radical idea: a watch powered by the stars.</p>
+                </div>
+            </div>
+            <div class="timeline-item reveal" style="transition-delay: 0.1s;">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2023</div>
+                <div class="timeline-content">
+                    <h3>Vortex Movement</h3>
+                    <p style="color: var(--text-secondary);">After 24 months of R&D, the first Vortex movement is finalized, achieving a record-breaking precision rating of ±0.5s per month.</p>
+                </div>
+            </div>
+            <div class="timeline-item reveal" style="transition-delay: 0.2s;">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2025</div>
+                <div class="timeline-content">
+                    <h3>Sundial Launch</h3>
+                    <p style="color: var(--text-secondary);">Sundial opens its first flagship boutique in Tokyo, introducing the world to the 'Nova' series and the concept of Solar-Kinetic drive.</p>
+                </div>
+            </div>
+            <div class="timeline-item reveal" style="transition-delay: 0.3s;">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">2026</div>
+                <div class="timeline-content">
+                    <h3>Bespoke Studio</h3>
+                    <p style="color: var(--text-secondary);">We launch the digital Bespoke Studio, allowing collectors worldwide to design their own mechanical legacy using our web-based customizer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="padding: 5rem 0; background: var(--bg-tertiary); border-top: 1px solid var(--border-color);">
+        <div class="container">
+            <div class="footer-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 4rem;">
+                <div class="footer-col">
+                    <a href="index.html" class="logo">Sun<span>dial</span></a>
+                    <p style="color: var(--text-secondary); margin-top: 1.5rem; font-size: 0.9rem; line-height: 1.6;">Crafting the intersection of luxury horology and cutting-edge technology since 2026. Every second is a masterpiece.</p>
+                </div>
+                <div class="footer-col">
+                    <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem; color: var(--accent-color);">Shop</h4>
+                    <ul style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <li><a href="collection.html" style="color: var(--text-secondary); font-size: 0.9rem;">Collection</a></li>
+                        <li><a href="bespoke.html" style="color: var(--text-secondary); font-size: 0.9rem;">Bespoke Studio</a></li>
+                        <li><a href="innovation.html" style="color: var(--text-secondary); font-size: 0.9rem;">Technology</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem; color: var(--accent-color);">Brand</h4>
+                    <ul style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <li><a href="about.html" style="color: var(--text-secondary); font-size: 0.9rem;">Our Story</a></li>
+                        <li><a href="about.html" style="color: var(--text-secondary); font-size: 0.9rem;">Sustainability</a></li>
+                        <li><a href="about.html" style="color: var(--text-secondary); font-size: 0.9rem;">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem; color: var(--accent-color);">Personalize UI</h4>
+                    <div style="display: flex; gap: 12px; margin-top: 1rem;">
+                        <button class="accent-picker" data-theme="gold" title="Gold Theme" style="width: 28px; height: 28px; border-radius: 50%; background: #d4af37; border: 2px solid transparent; cursor: pointer; transition: 0.3s;"></button>
+                        <button class="accent-picker" data-theme="blue" title="Blue Theme" style="width: 28px; height: 28px; border-radius: 50%; background: #3b82f6; border: 2px solid transparent; cursor: pointer; transition: 0.3s;"></button>
+                        <button class="accent-picker" data-theme="emerald" title="Emerald Theme" style="width: 28px; height: 28px; border-radius: 50%; background: #10b981; border: 2px solid transparent; cursor: pointer; transition: 0.3s;"></button>
+                        <button class="accent-picker" data-theme="rose" title="Rose Theme" style="width: 28px; height: 28px; border-radius: 50%; background: #f43f5e; border: 2px solid transparent; cursor: pointer; transition: 0.3s;"></button>
+                    </div>
+                    <div style="display: flex; gap: 1.5rem; margin-top: 2rem;">
+                        <a href="#" style="color: var(--text-secondary); font-size: 1.2rem;"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" style="color: var(--text-secondary); font-size: 1.2rem;"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" style="color: var(--text-secondary); font-size: 1.2rem;"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom" style="margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; color: var(--text-secondary); font-size: 0.8rem;">
+                <p>&copy; 2026 Sundial Horology Inc. All rights reserved.</p>
+                <div style="display: flex; gap: 2rem;">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

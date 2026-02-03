@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Secure Payment</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .checkout-container { padding: 10rem 0 5rem; display: grid; grid-template-columns: 1fr 400px; gap: 4rem; }
+        .checkout-form { background: var(--bg-secondary); padding: 3rem; border-radius: 10px; border: 1px solid var(--border-color); }
+        .order-summary { background: var(--bg-tertiary); padding: 2rem; border-radius: 10px; height: fit-content; position: sticky; top: 100px; }
+        
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); }
+        .form-group input { width: 100%; padding: 1rem; background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary); border-radius: 5px; }
+        .form-group input:focus { border-color: var(--accent-color); outline: none; }
+        
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid var(--border-color); }
+        .cart-item h4 { font-size: 0.9rem; }
+        .cart-item span { color: var(--accent-color); font-weight: 600; }
+        .remove-btn { background: none; border: none; color: #f43f5e; cursor: pointer; padding: 5px; }
+        
+        .empty-msg { text-align: center; padding: 3rem; color: var(--text-secondary); }
+        
+        .success-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 3000; display: none; align-items: center; justify-content: center; text-align: center; }
+        .success-content i { font-size: 5rem; color: #10b981; margin-bottom: 2rem; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Sun<span>dial</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="innovation.html">Innovation</a></li>
+                <li><a href="collection.html">Collection</a></li>
+                <li><a href="about.html">Our Story</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="btn-icon"><i class="fa-solid fa-moon"></i></button>
+                <a href="checkout.html" class="btn-icon active"><i class="fa-solid fa-bag-shopping"></i><span class="cart-count">0</span></a>
+                <a href="login.html" class="btn-icon" title="Login"><i class="fa-solid fa-user"></i></a>
+                <a href="signup.html" class="btn-icon" title="Sign Up"><i class="fa-solid fa-user-plus"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container checkout-container">
+        <section class="checkout-form reveal">
+            <h2 style="margin-bottom: 2.5rem; font-family: var(--font-heading);">Shipping Details</h2>
+            <form id="pay-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" name="lastName" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label>Shipping Address</label>
+                    <input type="text" name="address" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>City</label>
+                        <input type="text" name="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label>State</label>
+                        <input type="text" name="state" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>ZIP Code</label>
+                        <input type="text" name="zipCode" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Country</label>
+                        <input type="text" name="country" required>
+                    </div>
+                </div>
+                
+                <h2 style="margin: 3rem 0 2rem; font-family: var(--font-heading);">Payment</h2>
+                <div class="form-group">
+                    <label>Card Number</label>
+                    <input type="text" placeholder="XXXX XXXX XXXX XXXX" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Expiry Date</label>
+                        <input type="text" placeholder="MM/YY" required>
+                    </div>
+                    <div class="form-group">
+                        <label>CVV</label>
+                        <input type="text" placeholder="XXX" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary full-width" style="width: 100%; margin-top: 1rem;">Complete Purchase</button>
+            </form>
+        </section>
+
+        <aside class="order-summary reveal" style="transition-delay: 0.2s;">
+            <h3 style="margin-bottom: 1.5rem; font-family: var(--font-heading);">Order Summary</h3>
+            <div class="cart-list">
+                <!-- Items populated by JS -->
+            </div>
+            <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 2px solid var(--border-color);">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                    <span>Total</span>
+                    <span class="cart-total" style="font-size: 1.5rem; font-weight: 700; color: var(--accent-color);">$0</span>
+                </div>
+                <p style="font-size: 0.7rem; color: var(--text-secondary); text-align: center;">Secure 256-bit SSL Encrypted Payment</p>
+            </div>
+        </aside>
+    </div>
+
+    <div id="success-overlay" class="success-overlay">
+        <div class="success-content">
+            <i class="fa-solid fa-circle-check"></i>
+            <h1 style="font-size: 3rem; margin-bottom: 1rem;">Order Confirmed</h1>
+            <p style="color: var(--text-secondary); margin-bottom: 3rem;">Thank you for your purchase. Your Sundial is being prepared.</p>
+            <a href="index.html" class="btn btn-primary">Return to Home</a>
+        </div>
+    </div>
+
+    <footer style="padding: 5rem 0; background: var(--bg-tertiary); border-top: 1px solid var(--border-color);">
+        <div class="container">
+            <div class="footer-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 4rem;">
+                <div class="footer-col">
+                    <a href="index.html" class="logo">Sun<span>dial</span></a>
+                    <p style="color: var(--text-secondary); margin-top: 1.5rem; font-size: 0.9rem; line-height: 1.6;">Crafting the intersection of luxury horology and cutting-edge technology since 2026. Every second is a masterpiece.</p>
+                </div>
+                <div class="footer-col">
+                    <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem; color: var(--accent-color);">Shop</h4>
+                    <ul style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <li><a href="collection.html" style="color: var(--text-secondary); font-size: 0.9rem;">Collection</a></li>
+                        <li><a href="bespoke.html" style="color: var(--text-secondary); font-size: 0.9rem;">Bespoke Studio</a></li>
+                        <li><a href="innovation.html" style="color: var(--text-secondary); font-size: 0.9rem;">Technology</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem; color: var(--accent-color);">Brand</h4>
+                    <ul style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <li><a href="about.html" style="color: var(--text-secondary); font-size: 0.9rem;">Our Story</a></li>
+                        <li><a href="about.html" style="color: var(--text-secondary); font-size: 0.9rem;">Sustainability</a></li>
+                        <li><a href="about.html" style="color: var(--text-secondary); font-size: 0.9rem;">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem; color: var(--accent-color);">Personalize UI</h4>
+                    <div style="display: flex; gap: 12px; margin-top: 1rem;">
+                        <button class="accent-picker" data-theme="gold" title="Gold Theme" style="width: 28px; height: 28px; border-radius: 50%; background: #d4af37; border: 2px solid transparent; cursor: pointer; transition: 0.3s;"></button>
+                        <button class="accent-picker" data-theme="blue" title="Blue Theme" style="width: 28px; height: 28px; border-radius: 50%; background: #3b82f6; border: 2px solid transparent; cursor: pointer; transition: 0.3s;"></button>
+                        <button class="accent-picker" data-theme="emerald" title="Emerald Theme" style="width: 28px; height: 28px; border-radius: 50%; background: #10b981; border: 2px solid transparent; cursor: pointer; transition: 0.3s;"></button>
+                        <button class="accent-picker" data-theme="rose" title="Rose Theme" style="width: 28px; height: 28px; border-radius: 50%; background: #f43f5e; border: 2px solid transparent; cursor: pointer; transition: 0.3s;"></button>
+                    </div>
+                    <div style="display: flex; gap: 1.5rem; margin-top: 2rem;">
+                        <a href="#" style="color: var(--text-secondary); font-size: 1.2rem;"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" style="color: var(--text-secondary); font-size: 1.2rem;"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" style="color: var(--text-secondary); font-size: 1.2rem;"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom" style="margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; color: var(--text-secondary); font-size: 0.8rem;">
+                <p>&copy; 2026 Sundial Horology Inc. All rights reserved.</p>
+                <div style="display: flex; gap: 2rem;">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+    <script>
+        document.getElementById('pay-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            Cart.checkout(formData);
+        });
+    </script>
+</body>
+</html>
