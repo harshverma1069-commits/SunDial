@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sundial | Precision Engineering</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=1920'); background-size: cover; background-position: center; }
+        .hero-content { text-align: center; z-index: 2; }
+        .hero-title { font-size: 6rem; margin-bottom: 1rem; letter-spacing: 15px; text-transform: uppercase; font-family: var(--font-heading); }
+        .hero-subtitle { font-size: 1.2rem; color: var(--text-secondary); letter-spacing: 5px; text-transform: uppercase; }
+        
+        .story-section { padding: 10rem 0; background: var(--bg-secondary); }
+        .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+        .story-img { height: 500px; background-size: cover; background-position: center; border-radius: 10px; position: relative; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .story-img::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.5)); }
+        
+        .featured-section { padding: 8rem 0; text-align: center; }
+        .featured-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 4rem; }
+        .feature-card { background: var(--bg-secondary); padding: 2rem; border-radius: 15px; transition: 0.4s; border: 1px solid var(--border-color); display: flex; flex-direction: column; justify-content: space-between; }
+        .feature-card:hover { transform: translateY(-10px); border-color: var(--accent-color); }
+        .feature-card img { width: 100%; height: 300px; object-fit: cover; border-radius: 10px; margin-bottom: 1.5rem; }
+        
+        .newsletter { padding: 8rem 0; background: var(--bg-tertiary); text-align: center; }
+        .newsletter-form { max-width: 500px; margin: 3rem auto 0; display: flex; gap: 1rem; }
+        .newsletter-form input { flex: 1; padding: 1rem 1.5rem; background: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary); border-radius: 30px; }
+        .newsletter-form .btn { border-radius: 30px; padding: 0 2rem; }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 3.5rem; letter-spacing: 8px; }
+            .story-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .story-img { height: 350px; }
+            .newsletter-form { flex-direction: column; padding: 0 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Sun<span>dial</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="innovation.html">Innovation</a></li>
+                <li><a href="collection.html">Collection</a></li>
+                <li><a href="about.html">Our Story</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="btn-icon" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
+                <a href="checkout.html" class="btn-icon" title="View Cart"><i class="fa-solid fa-bag-shopping"></i><span class="cart-count">0</span></a>
+                <a href="login.html" class="btn-icon" title="Login"><i class="fa-solid fa-user"></i></a>
+                <a href="signup.html" class="btn-icon" title="Sign Up"><i class="fa-solid fa-user-plus"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content reveal">
+            <h1 class="hero-title">Sundial</h1>
+            <p class="hero-subtitle">The Pinnacle of Chronometric Artistry</p>
+            <div style="margin-top: 3rem;">
+                <a href="collection.html" class="btn btn-primary">Discover Collection</a>
+                <a href="bespoke.html" class="btn btn-outline" style="margin-left: 1rem;">Design with craft</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="story-section">
+        <div class="container">
+            <div class="story-grid">
+                <div class="story-text reveal">
+                    <h2 class="section-title" style="font-size: 3rem; margin-bottom: 2rem;">Engineered <br><span style="color: var(--accent-color)">Excellence</span></h2>
+                    <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.8;">At Sundial, we don't just measure time; we celebrate it. Every timepiece is a complex symphony of over 300 hand-finished components, housed in cases forged from Grade 5 titanium and sapphire crystal. Our patented Solar-Kinetic drive ensures your watch remains powered as long as you are in motion, blending the purity of mechanical movement with the efficiency of modern energy harvesting.</p>
+                    <a href="innovation.html" class="btn btn-outline">Learn About Our Tech</a>
+                </div>
+                <div class="story-img reveal" style="transition-delay: 0.2s; background-image: url('https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&q=80&w=1200');">
+                    <div style="position: absolute; bottom: 20px; right: 20px; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; z-index: 1;">Vortex Series One</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-section">
+        <div class="container">
+            <h2 class="reveal">Featured Series</h2>
+            <p class="reveal" style="color: var(--text-secondary); margin-top: 1rem;">Curated masterpieces for the modern connoisseur.</p>
+            <div class="featured-grid">
+                <div class="feature-card reveal">
+                    <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&q=80&w=800" alt="Apex Chrono">
+                    <h3>Apex Chrono</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 1rem 0;">Precision split-second chronograph with moon-phase indicator.</p>
+                    <a href="collection.html" class="btn btn-outline btn-sm">View Details</a>
+                </div>
+                <div class="feature-card reveal" style="transition-delay: 0.1s;">
+                    <img src="https://images.unsplash.com/photo-1612817159949-195b6eb9e31a?auto=format&fit=crop&q=80&w=800" alt="Nebula Gold">
+                    <h3>Nebula Gold</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 1rem 0;">18k Rose Gold case with a skeletonized obsidian dial.</p>
+                    <a href="collection.html" class="btn btn-outline btn-sm">View Details</a>
+                </div>
+                <div class="feature-card reveal" style="transition-delay: 0.2s;">
+                    <img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&q=80&w=800" alt="Deep Sea">
+                    <h3>Deep Sea</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 1rem 0;">Water resistant to 1000m with helium escape valve.</p>
+                    <a href="collection.html" class="btn btn-outline btn-sm">View Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="story-section" style="background: var(--bg-primary);">
+        <div class="container">
+            <div class="story-grid">
+                <div class="story-img reveal" style="background-image: url('https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&q=80&w=1200');">
+                    <div style="position: absolute; bottom: 20px; left: 20px; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; z-index: 1;">Craftsmanship</div>
+                </div>
+                <div class="story-text reveal" style="transition-delay: 0.2s;">
+                    <h2 class="section-title" style="font-size: 3rem; margin-bottom: 2rem;">A Personal <br><span style="color: var(--accent-color)">Statement</span></h2>
+                    <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.8;">We believe a watch should be as unique as its wearer. Our Bespoke Studio allows you to customize every detail, from the dial finish to the internal complications. Choose from over 50 material combinations and engrave your legacy into the very caseback of your timepiece. Your story, your time, your Sundial.</p>
+                    <a href="bespoke.html" class="btn btn-primary">Start Customizing</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter reveal">
+        <div class="container">
+            <h2 style="font-family: var(--font-heading);">Join the Inner Circle</h2>
+            <p style="color: var(--text-secondary); margin-top: 1rem;">Subscribe to receive early access to limited edition drops and horological insights.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="logo">Sun<span>dial</span></a>
+                    <p style="color: var(--text-secondary); margin-top: 1rem;">Crafting the intersection of luxury and technology since 2026.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Shop</h4>
+                    <a href="collection.html">Collection</a>
+                    <a href="bespoke.html">Bespoke Studio</a>
+                    <a href="collection.html">Accessories</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Brand</h4>
+                    <a href="about.html">Our Story</a>
+                    <a href="innovation.html">Technology</a>
+                    <a href="about.html">Careers</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Personalize UI</h4>
+                    <div style="display: flex; gap: 10px; margin-top: 1rem;">
+                        <button class="accent-picker" data-theme="gold" style="width: 25px; height: 25px; border-radius: 50%; background: #d4af37; border: none; cursor: pointer;"></button>
+                        <button class="accent-picker" data-theme="blue" style="width: 25px; height: 25px; border-radius: 50%; background: #3b82f6; border: none; cursor: pointer;"></button>
+                        <button class="accent-picker" data-theme="emerald" style="width: 25px; height: 25px; border-radius: 50%; background: #10b981; border: none; cursor: pointer;"></button>
+                        <button class="accent-picker" data-theme="rose" style="width: 25px; height: 25px; border-radius: 50%; background: #f43f5e; border: none; cursor: pointer;"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Sundial Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>
