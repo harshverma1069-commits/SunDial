@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collection | Sundial Series</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .collection-hero { padding: 12rem 0 6rem; text-align: center; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=1920'); background-size: cover; background-position: center; }
+        .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; padding: 5rem 0; }
+        .product-card { background: var(--bg-tertiary); border: 1px solid var(--border-color); padding: 1.5rem; transition: 0.4s; position: relative; border-radius: 15px; overflow: hidden; }
+        .product-card:hover { border-color: var(--accent-color); transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+        .product-img { height: 350px; border-radius: 10px; overflow: hidden; margin-bottom: 1.5rem; position: relative; }
+        .product-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .product-card:hover .product-img img { transform: scale(1.1); }
+        .product-info { text-align: left; }
+        .product-price { color: var(--accent-color); font-weight: 700; font-size: 1.4rem; margin-top: 0.5rem; font-family: var(--font-heading); }
+        .product-specs { font-size: 0.8rem; color: var(--text-secondary); margin: 1rem 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .spec-tag { background: var(--bg-primary); padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border-color); }
+        .add-to-cart { width: 100%; margin-top: 1rem; border-radius: 30px; }
+        
+        @media (max-width: 992px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .product-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Sun<span>dial</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="innovation.html">Innovation</a></li>
+                <li><a href="collection.html" class="active">Collection</a></li>
+                <li><a href="about.html">Our Story</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="btn-icon"><i class="fa-solid fa-moon"></i></button>
+                <a href="checkout.html" class="btn-icon"><i class="fa-solid fa-bag-shopping"></i><span class="cart-count">0</span></a>
+                <a href="login.html" class="btn-icon" title="Login"><i class="fa-solid fa-user"></i></a>
+                <a href="signup.html" class="btn-icon" title="Sign Up"><i class="fa-solid fa-user-plus"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="collection-hero">
+        <div class="container">
+            <h1 style="font-size: 3.5rem;">The Series</h1>
+            <p style="color: var(--text-secondary); margin-top: 1rem;">From minimalist daily wear to high-complication masterpieces.</p>
+        </div>
+    </header>
+
+    <section class="container">
+        <div class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-card reveal">
+                <div class="product-img">
+                    <img src="h1.jpg" alt="Chronos One">
+                </div>
+                <div class="product-info">
+                    <span style="font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-secondary);">Nova Series</span>
+                    <h3>Chronos One</h3>
+                    <div class="product-specs">
+                        <span class="spec-tag">40mm</span>
+                        <span class="spec-tag">Steel</span>
+                        <span class="spec-tag">Solar</span>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">A minimalist masterpiece for everyday precision. Features a sunray dial and solar-kinetic movement.</p>
+                    <p class="product-price">$1,250</p>
+                    <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                        <a href="product-detail.html?id=1" class="btn btn-primary" style="flex: 1; border-radius: 30px; text-align: center;">View Details</a>
+                        <a href="bespoke.html?id=1" class="btn btn-outline" style="border-radius: 30px; padding: 0 1rem; display: flex; align-items: center;" title="Customize"><i class="fa-solid fa-sliders"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- Product 2 -->
+            <div class="product-card reveal" style="transition-delay: 0.1s;">
+                <div class="product-img">
+                    <img src="45.jpg" alt="Vortex Elite">
+                </div>
+                <div class="product-info">
+                    <span style="font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-secondary);">Master Series</span>
+                    <h3>Vortex Elite</h3>
+                    <div class="product-specs">
+                        <span class="spec-tag">42mm</span>
+                        <span class="spec-tag">Titanium</span>
+                        <span class="spec-tag">GMT</span>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">Engineered for the global traveler. Dual-timezone tracking with a skeletonized obsidian dial.</p>
+                    <p class="product-price">$3,800</p>
+                    <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                        <a href="product-detail.html?id=2" class="btn btn-primary" style="flex: 1; border-radius: 30px; text-align: center;">View Details</a>
+                        <a href="bespoke.html?id=2" class="btn btn-outline" style="border-radius: 30px; padding: 0 1rem; display: flex; align-items: center;" title="Customize"><i class="fa-solid fa-sliders"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- Product 3 -->
+            <div class="product-card reveal" style="transition-delay: 0.2s;">
+                <div class="product-img">
+                    <img src="897.jpg" alt="Aeon Classic">
+                </div>
+                <div class="product-info">
+                    <span style="font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-secondary);">Heritage Series</span>
+                    <h3>Aeon Classic</h3>
+                    <div class="product-specs">
+                        <span class="spec-tag">38mm</span>
+                        <span class="spec-tag">Rose Gold</span>
+                        <span class="spec-tag">Leather</span>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">Timeless elegance meets modern tech. Hand-stitched Italian leather with an 18k gold case.</p>
+                    <p class="product-price">$2,100</p>
+                    <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                        <a href="product-detail.html?id=3" class="btn btn-primary" style="flex: 1; border-radius: 30px; text-align: center;">View Details</a>
+                        <a href="bespoke.html?id=3" class="btn btn-outline" style="border-radius: 30px; padding: 0 1rem; display: flex; align-items: center;" title="Customize"><i class="fa-solid fa-sliders"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- Product 4 -->
+            <div class="product-card reveal">
+                <div class="product-img">
+                    <img src="Fu.jpg" alt="Sun Ray">
+                </div>
+                <div class="product-info">
+                    <span style="font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-secondary);">Solaris Series</span>
+                    <h3>Sun Ray</h3>
+                    <div class="product-specs">
+                        <span class="spec-tag">41mm</span>
+                        <span class="spec-tag">Alloy</span>
+                        <span class="spec-tag">Lume</span>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">Ultra-thin profile with a high-efficiency solar collector dial. Glows in total darkness.</p>
+                    <p class="product-price">$950</p>
+                    <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                        <a href="product-detail.html?id=4" class="btn btn-primary" style="flex: 1; border-radius: 30px; text-align: center;">View Details</a>
+                        <a href="bespoke.html?id=4" class="btn btn-outline" style="border-radius: 30px; padding: 0 1rem; display: flex; align-items: center;" title="Customize"><i class="fa-solid fa-sliders"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- Product 5 -->
+            <div class="product-card reveal" style="transition-delay: 0.1s;">
+                <div class="product-img">
+                    <img src="gu.jpg" alt="Deep Sea X">
+                </div>
+                <div class="product-info">
+                    <span style="font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-secondary);">Titan Series</span>
+                    <h3>Deep Sea X</h3>
+                    <div class="product-specs">
+                        <span class="spec-tag">44mm</span>
+                        <span class="spec-tag">Steel</span>
+                        <span class="spec-tag">1000m</span>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">The ultimate diving instrument. Helium escape valve and sapphire crystal back.</p>
+                    <p class="product-price">$4,500</p>
+                    <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                        <a href="product-detail.html?id=5" class="btn btn-primary" style="flex: 1; border-radius: 30px; text-align: center;">View Details</a>
+                        <a href="bespoke.html?id=5" class="btn btn-outline" style="border-radius: 30px; padding: 0 1rem; display: flex; align-items: center;" title="Customize"><i class="fa-solid fa-sliders"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Product 6 -->
+            <div class="product-card reveal" style="transition-delay: 0.2s;">
+                <div class="product-img">
+                    <img src="ui.jpg" alt="Logic Pro">
+                </div>
+                <div class="product-info">
+                    <span style="font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-secondary);">Quantum Series</span>
+                    <h3>Logic Pro</h3>
+                    <div class="product-specs">
+                        <span class="spec-tag">42mm</span>
+                        <span class="spec-tag">Ceramic</span>
+                        <span class="spec-tag">Satellite</span>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">Atomic timekeeping via satellite sync. Scratch-resistant matte ceramic finish.</p>
+                    <p class="product-price">$1,900</p>
+                    <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                        <a href="product-detail.html?id=6" class="btn btn-primary" style="flex: 1; border-radius: 30px; text-align: center;">View Details</a>
+                        <a href="bespoke.html?id=6" class="btn btn-outline" style="border-radius: 30px; padding: 0 1rem; display: flex; align-items: center;" title="Customize"><i class="fa-solid fa-sliders"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="padding: 5rem 0; background: var(--bg-tertiary); border-top: 1px solid var(--border-color);">
+        <div class="container">
+            <div class="footer-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 4rem;">
+                <div class="footer-col">
+                    <a href="index.html" class="logo">Sun<span>dial</span></a>
+                    <p style="color: var(--text-secondary); margin-top: 1.5rem; font-size: 0.9rem; line-height: 1.6;">Crafting the intersection of luxury horology and cutting-edge technology since 2026. Every second is a masterpiece.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem; color: var(--accent-color);">Shop</h4>
+                    <ul style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <li><a href="collection.html" style="color: var(--text-secondary); font-size: 0.9rem;">Collection</a></li>
+                        <li><a href="bespoke.html" style="color: var(--text-secondary); font-size: 0.9rem;">Bespoke Studio</a></li>
+                        <li><a href="innovation.html" style="color: var(--text-secondary); font-size: 0.9rem;">Technology</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem; color: var(--accent-color);">Brand</h4>
+                    <ul style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <li><a href="about.html" style="color: var(--text-secondary); font-size: 0.9rem;">Our Story</a></li>
+                        <li><a href="about.html" style="color: var(--text-secondary); font-size: 0.9rem;">Sustainability</a></li>
+                        <li><a href="about.html" style="color: var(--text-secondary); font-size: 0.9rem;">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1rem; color: var(--accent-color);">Personalize UI</h4>
+                    <div style="display: flex; gap: 12px; margin-top: 1rem;">
+                        <button class="accent-picker" data-theme="gold" title="Gold Theme" style="width: 28px; height: 28px; border-radius: 50%; background: #d4af37; border: 2px solid transparent; cursor: pointer; transition: 0.3s;"></button>
+                        <button class="accent-picker" data-theme="blue" title="Blue Theme" style="width: 28px; height: 28px; border-radius: 50%; background: #3b82f6; border: 2px solid transparent; cursor: pointer; transition: 0.3s;"></button>
+                        <button class="accent-picker" data-theme="emerald" title="Emerald Theme" style="width: 28px; height: 28px; border-radius: 50%; background: #10b981; border: 2px solid transparent; cursor: pointer; transition: 0.3s;"></button>
+                        <button class="accent-picker" data-theme="rose" title="Rose Theme" style="width: 28px; height: 28px; border-radius: 50%; background: #f43f5e; border: 2px solid transparent; cursor: pointer; transition: 0.3s;"></button>
+                    </div>
+                    <div style="display: flex; gap: 1.5rem; margin-top: 2rem;">
+                        <a href="#" style="color: var(--text-secondary); font-size: 1.2rem;"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" style="color: var(--text-secondary); font-size: 1.2rem;"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" style="color: var(--text-secondary); font-size: 1.2rem;"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom" style="margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; color: var(--text-secondary); font-size: 0.8rem;">
+                <p>&copy; 2026 Sundial Horology Inc. All rights reserved.</p>
+                <div style="display: flex; gap: 2rem;">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>
